@@ -24,9 +24,9 @@ public class RefactorizarColores {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testOperatingSystem();
-        DDLoggerInterface logger;
-        logger = initializeLogFiles();
+        runOnLinuxOrDie();
+        DDLoggerInterface loggerFiles;
+        loggerFiles = initializeLogFiles();
         //initializeLogFiles();
         openPreferences();
         setDefaultColores();
@@ -70,7 +70,7 @@ public class RefactorizarColores {
         return logger;
     }
 
-    private static void testOperatingSystem() {
+    private static void runOnLinuxOrDie() {
         // (1) comprobar el sistema Operativo y asegurarnos qeu solo funciona en linux
         boolean mrjVersionExists = System.getProperty("mrj.version") != null;
         boolean osNameExists = System.getProperty("os.name").startsWith("linux");
