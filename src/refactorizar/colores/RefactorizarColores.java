@@ -6,11 +6,19 @@
 
 package refactorizar.colores;
 
+import java.io.File;
+import java.util.prefs.Preferences;
+import xtra.classes.Color;
+import xtra.classes.DDLoggerInterface;
+import xtra.classes.DDSimpleLogger;
+
 /**
  *
  * @author lgarcia
  */
 public class RefactorizarColores {
+    private static Color currentColor;
+    private static Preferences preferences;
 
     /**
      * @param args the command line arguments
@@ -25,9 +33,15 @@ public class RefactorizarColores {
           System.err.println("Este programa no puede ejecutarse en sistemas operativo inferiores");
           System.exit(1);
         }
+        int DEFAULT_LOG_LEVEL = 0;
 
         // (2) inicializar ficheros de log
         int currentLoggingLevel = DEFAULT_LOG_LEVEL;
+        String ERROR_LOG_FILENAME = "error";
+        String WARNING_LOG_FILENAME = "warning";
+        String DEBUG_LOG_FILENAME = "debug";
+        DDLoggerInterface logger;
+        String CANON_DEBUG_FILENAME = "current.log";
 
         File errorFile = new File(ERROR_LOG_FILENAME);
         File warningFile = new File(WARNING_LOG_FILENAME);
